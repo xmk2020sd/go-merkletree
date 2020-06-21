@@ -93,6 +93,23 @@ func (t *MerkleTree) GenerateProof(data []byte, height int) (*Proof, error) {
 	return newProof(hashes, index), nil
 }
 
+// GenerateProof generates the proof for a piece of data.
+// Height is the height of the pollard to verify the proof.  If using the Merkle root to verify this should be 0.
+// Index should be the leaf node index to generate proof for.
+// This will return the hashes for each level in the tree and the index of the value in the tree
+func (t *MerkleTree) GenerateProofUsingIndex(index uint64, height int) (*Proof, error) {
+	proofLen := int(math.Ceil(math.Log2(float64(len(t.data))))) - height
+	hashes := make([][]byte, proofLen)
+
+	cur := 0
+	minI := uint64(math.Pow(2, float64(height+1))) - 1
+	for i := index + uint64(len(t.nodes)/2); i > minI; i /= 2 {
+		hashes[cur] = t.nodes[i^1]
+		cur++
+	}
+	return newProof(hashes, index), nil
+}
+
 // GenerateMultiProof generates the proof for multiple pieces of data.
 func (t *MerkleTree) GenerateMultiProof(data [][]byte) (*MultiProof, error) {
 	hashes := make([][][]byte, len(data))
