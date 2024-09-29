@@ -17,7 +17,7 @@ import (
 	"bytes"
 	"encoding/binary"
 
-	"github.com/wealdtech/go-merkletree/blake2b"
+	"github.com/xmk2020sd/go-merkletree/blake2b"
 )
 
 // Proof is a proof of a Merkle tree
