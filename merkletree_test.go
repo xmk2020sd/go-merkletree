@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/wealdtech/go-merkletree/blake2b"
-	"github.com/wealdtech/go-merkletree/keccak256"
+	"github.com/xmk2020sd/go-merkletree/blake2b"
+	"github.com/xmk2020sd/go-merkletree/keccak256"
 )
 
 // _byteArray is a helper to turn a string in to a byte array
